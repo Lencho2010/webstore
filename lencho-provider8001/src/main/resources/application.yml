@@ -47,3 +47,21 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+
+master:
+  datasource:
+    druid:
+      driverClassName: org.gjt.mm.mysql.Driver
+      #配置基本属性
+      url: jdbc:mysql://hadoop104:3306/db2021?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username: root
+      password: 123456
+
+second:
+  datasource:
+    druid:
+      driverClassName: org.gjt.mm.mysql.Driver
+      #配置基本属性
+      url: jdbc:mysql://hadoop104:3306/db01?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username: root
+      password: 123456
