@@ -2,6 +2,7 @@ package com.geoway.webstore.controller;
 
 import com.geoway.webstore.anno.ResponseResult;
 import com.geoway.webstore.service.StudentService;
+import com.geoway.webstore.service.StudentService2;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +27,7 @@ public class StudentController {
         return studentService.queryAll();
     }
 
-   /* @Resource
+    //@Resource
     private StudentService2 testService;
 
     @GetMapping("/queryStudents")
@@ -37,5 +38,5 @@ public class StudentController {
     @GetMapping("/queryStudents2")
     public List<Map> queryStudents2(){
         return testService.queryStudents2();
-    }*/
+    }
 }

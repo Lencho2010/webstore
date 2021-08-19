@@ -14,7 +14,7 @@ import java.util.Map;
  * @author Lencho
  * @create 2021-08-18 21:56
  */
-/*@Service
+//@Service
 public class StudentService2 {
     @Autowired
     @Qualifier("masterSqlSessionFactory")
@@ -37,4 +37,4 @@ public class StudentService2 {
         StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
         return mapper.queryAll();
     }
-}*/
+}

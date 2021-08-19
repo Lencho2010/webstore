@@ -30,7 +30,7 @@ public class MasterDataSourceConfig {
     private String username;
     private String password;
 
-    @Primary
+//    @Primary
     @Bean(name = "masterDataSource")
     public DataSource getMasterDataSource() throws SQLException {
         DruidDataSource druid = new DruidDataSource();
@@ -44,13 +44,13 @@ public class MasterDataSourceConfig {
         return druid;
     }
 
-    @Primary
+//    @Primary
     @Bean(name = "masterTransactionManager")
     public DataSourceTransactionManager masterTransactionManager() throws SQLException {
         return new DataSourceTransactionManager(getMasterDataSource());
     }
 
-    @Primary
+//    @Primary
     @Bean(name = "masterSqlSessionFactory")
     public SqlSessionFactory getMasterSqlSessionFactory(@Qualifier("masterDataSource") DataSource masterDataSource) throws Exception {
         final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();

@@ -19,7 +19,7 @@ public class SqlSessionService {
     private DynamicSqlSession dynamicSqlSession;
 
     public List<Map> queryStus(){
-        StudentMapper mapper = dynamicSqlSession.getMapper(DataSourceName.Second, StudentMapper.class);
+        StudentMapper mapper = dynamicSqlSession.getMapper(DataSourceName.Primary, StudentMapper.class);
         return mapper.queryAll();
     }
 }
