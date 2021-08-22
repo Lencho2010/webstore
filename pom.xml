@@ -10,7 +10,6 @@
   <modules>
     <module>lencho-provider8001</module>
     <module>lencho-api-commons</module>
-    <module>MyBatis_01_HelloWorld</module>
   </modules>
   <packaging>pom</packaging>
 
