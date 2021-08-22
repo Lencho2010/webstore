@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.geoway.webstore.dao.CheckDetailDao">
+
+    <resultMap id="BaseResultMap" type="com.geoway.webstore.entities.CheckDetail">
+        <result column="f_code" property="code" jdbcType="VARCHAR"/>
+
+        <result column="f_sjxzqmc" property="provinceName" jdbcType="VARCHAR"/>
+        <result column="f_sjxzqdm" property="provinceCode" jdbcType="VARCHAR"/>
+        <result column="f_dsjxzqmc" property="cityName" jdbcType="VARCHAR"/>
+        <result column="f_dsjxzqdm" property="cityCode" jdbcType="VARCHAR"/>
+        <result column="f_xzqdm" property="countyCode" jdbcType="VARCHAR"/>
+        <result column="f_xzqmc" property="countyName" jdbcType="VARCHAR"/>
+
+        <result column="f_rule" property="ruleCode" jdbcType="INTEGER"/>
+        <result column="f_rulename" property="ruleName" jdbcType="VARCHAR"/>
+        <result column="f_jctbbh" property="jctbBh" jdbcType="VARCHAR"/>
+        <result column="f_checkmsg" property="checkMsg" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        f_code,
+        f_sjxzqmc, f_sjxzqdm, f_dsjxzqmc, f_dsjxzqdm, f_xzqdm, f_xzqmc, f_rule, f_rulename, f_jctbbh, f_checkmsg
+    </sql>
+
+    <!-- 查询1 -->
+    <select id="selectForPage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_jctb2021_checkdetail
+        limit #{pageSize} offset #{startIndex}
+    </select>
+    <!-- 查询1 -->
+    <select id="selectByCode" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_jctb2021_checkdetail where 1=1
+        <if test="code != null and code != ''">
+            and f_code = #{code,jdbcType=VARCHAR}
+        </if>
+    </select>
+    <!-- 查询总条数 -->
+    <select id="selectCount" resultType="java.lang.Integer">
+        select count(*)
+        from t_jctb2021_checkdetail
+    </select>
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.geoway.webstore.dao.SubFileInfoDao">
+
+    <resultMap id="BaseResultMap" type="com.geoway.webstore.entities.SubFileInfo">
+        <result column="f_oid" property="oid" jdbcType="INTEGER"/>
+        <result column="f_taskid" property="taskId" jdbcType="INTEGER"/>
+        <result column="f_code" property="code" jdbcType="VARCHAR"/>
+        <result column="f_filename" property="fileName" jdbcType="VARCHAR"/>
+        <result column="f_filepath" property="filePath" jdbcType="VARCHAR"/>
+        <result column="f_sjxzqmc" property="provinceName" jdbcType="VARCHAR"/>
+        <result column="f_sjxzqdm" property="provinceCode" jdbcType="VARCHAR"/>
+        <result column="f_dsjxzqmc" property="cityName" jdbcType="VARCHAR"/>
+        <result column="f_dsjxzqdm" property="cityCode" jdbcType="VARCHAR"/>
+        <result column="f_xjxzqdm" property="countyCode" jdbcType="VARCHAR"/>
+        <result column="f_xjxzqmc" property="countyName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        f_oid
+        , f_taskid, f_code
+        , f_filename, f_filepath, f_sjxzqmc, f_sjxzqdm, f_dsjxzqmc, f_dsjxzqdm, f_xjxzqdm, f_xjxzqmc
+    </sql>
+
+    <!-- 查询1 -->
+    <select id="selectForPage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_subfileinfo
+        limit #{pageSize} offset #{startIndex}
+    </select>
+    <!-- 查询1 -->
+    <select id="selectByTaskId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_subfileinfo where 1=1
+        <if test="taskId != null">
+            and f_taskid = #{taskId,jdbcType=INTEGER}
+        </if>
+    </select>
+    <!-- 查询总条数 -->
+    <select id="selectCount" resultType="java.lang.Integer">
+        select count(*)
+        from tb_subfileinfo
+    </select>
+</mapper>
