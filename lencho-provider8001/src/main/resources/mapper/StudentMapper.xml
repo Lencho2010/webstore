@@ -23,7 +23,7 @@
     <!-- 查询2-->
     <select id="selectForPage2" resultType="com.geoway.webstore.entities.Student">
         select *
-        from student limit #{startIndex},#{pageSize}
+        from student limit #{pageSize} offset #{startIndex}
     </select>
     <!-- 查询总条数-->
     <select id="selectCount" resultType="java.lang.Integer">
