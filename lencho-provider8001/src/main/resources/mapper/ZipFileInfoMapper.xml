@@ -27,6 +27,14 @@
         order by f_starttime desc
         limit #{pageSize} offset #{startIndex}
     </select>
+
+    <select id="select" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_zipfileinfo
+        order by f_starttime desc
+    </select>
+
     <!-- 查询1 -->
     <select id="selectByName" resultMap="BaseResultMap">
         select

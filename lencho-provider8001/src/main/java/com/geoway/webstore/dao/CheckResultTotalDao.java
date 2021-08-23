@@ -17,4 +17,8 @@ public interface CheckResultTotalDao {
     public Integer selectCount();
 
     public List<CheckResultTotal> selectForPage(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
+
+    public List<CheckResultTotal> selectByStatus(@Param("status") Integer status);
+
+    public List<CheckResultTotal> selectByStatus2(@Param("list") List<Integer> list);
 }

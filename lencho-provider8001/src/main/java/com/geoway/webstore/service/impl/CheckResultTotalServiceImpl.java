@@ -3,10 +3,11 @@ package com.geoway.webstore.service.impl;
 import com.geoway.webstore.dao.CheckResultTotalDao;
 import com.geoway.webstore.entities.CheckResultTotal;
 import com.geoway.webstore.service.CheckResultTotalService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -48,5 +49,19 @@ public class CheckResultTotalServiceImpl implements CheckResultTotalService {
         list.add(model);
 
         return list;*/
+    }
+
+    @Override
+    public PageInfo selectByStatus(Integer page, Integer rows, Integer status) {
+        PageHelper.startPage(page, rows);
+        List<CheckResultTotal> list = checkResultTotalDao.selectByStatus(status);
+        return new PageInfo<>(list);
+    }
+
+    @Override
+    public PageInfo selectByStatus(Integer page, Integer rows, List<Integer> list) {
+        PageHelper.startPage(page, rows);
+        List<CheckResultTotal> rets = checkResultTotalDao.selectByStatus2(list);
+        return new PageInfo<>(rets);
     }
 }

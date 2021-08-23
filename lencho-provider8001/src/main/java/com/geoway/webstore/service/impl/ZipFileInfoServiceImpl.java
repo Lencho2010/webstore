@@ -3,6 +3,8 @@ package com.geoway.webstore.service.impl;
 import com.geoway.webstore.dao.ZipFileInfoDao;
 import com.geoway.webstore.entities.ZipFileInfo;
 import com.geoway.webstore.service.ZipFileInfoService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,6 +23,13 @@ public class ZipFileInfoServiceImpl implements ZipFileInfoService {
     @Override
     public Integer selectCount() {
         return zipFileInfoDao.selectCount();
+    }
+
+    @Override
+    public PageInfo select(int page, int rows) {
+        PageHelper.startPage(page, rows);
+        List<ZipFileInfo> list = zipFileInfoDao.select();
+        return new PageInfo<>(list);
     }
 
     @Override

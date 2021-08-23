@@ -15,6 +15,8 @@ public interface ZipFileInfoDao {
 
     public Integer selectCount();
 
+    public List<ZipFileInfo> select();
+
     public List<ZipFileInfo> selectForPage(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
 
     public ZipFileInfo selectByName(@Param("fileName") String fileName);

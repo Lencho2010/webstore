@@ -14,6 +14,31 @@
         f_code
         , f_starttime, f_endtime, f_status
     </sql>
+    <select id="selectByStatus" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_jctb2021_checkresult_total
+        where 1=1
+        <if test="status != null">
+            and f_status = #{status}
+        </if>
+        order by f_starttime desc
+    </select>
+
+    <select id="selectByStatus2" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_jctb2021_checkresult_total
+        where 1=1
+        <if test="list != null and list.size() > 0">
+            and f_status in (
+            <foreach collection="list" item="item" separator=",">
+                #{item,jdbcType=NUMERIC}
+            </foreach>)
+        </if>
+        order by f_starttime desc
+    </select>
+
 
     <!-- 查询1 -->
     <select id="selectForPage" resultMap="BaseResultMap">
