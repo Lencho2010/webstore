@@ -32,6 +32,14 @@ public class PaymentController {
         return paymentService.create(payment);
     }
 
+    @PostMapping("/create2")
+    public int create2(@RequestParam Long id,
+                       @RequestParam String serial) {
+        log.info("*******插入结果：");
+
+        return paymentService.create(new Payment(id, serial));
+    }
+
     @GetMapping("/get/{id}")
     public Payment getPaymentById(@PathVariable("id") Long id) {
         log.info("查询数据...");
