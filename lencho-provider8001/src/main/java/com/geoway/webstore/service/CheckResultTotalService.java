@@ -15,7 +15,7 @@ public interface CheckResultTotalService {
 
     public List<CheckResultTotal> selectForPage(int startIndex, int pageSize);
 
-    PageInfo selectByStatus(Integer page, Integer rows, Integer status);
+    PageInfo<CheckResultTotal> selectByStatus(Integer page, Integer rows, Integer status);
 
-    PageInfo selectByStatus(Integer page, Integer rows, List<Integer> list);
+    PageInfo<CheckResultTotal> selectByStatus(Integer page, Integer rows, List<Integer> list);
 }

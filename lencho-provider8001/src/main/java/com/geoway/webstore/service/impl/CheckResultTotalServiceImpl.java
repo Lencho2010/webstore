@@ -38,30 +38,35 @@ public class CheckResultTotalServiceImpl implements CheckResultTotalService {
             startIndex++;
         }
         return list;
-
-        /*List<CheckResultTotal> list = new ArrayList<>();
-        CheckResultTotal model = new CheckResultTotal();
-        model.setIndex(1);
-        list.add(model);
-
-        model = new CheckResultTotal();
-        model.setIndex(2);
-        list.add(model);
-
-        return list;*/
     }
 
     @Override
-    public PageInfo selectByStatus(Integer page, Integer rows, Integer status) {
+    public PageInfo<CheckResultTotal> selectByStatus(Integer page, Integer rows, Integer status) {
         PageHelper.startPage(page, rows);
         List<CheckResultTotal> list = checkResultTotalDao.selectByStatus(status);
+        Random random = new Random();
+        int startIndex = (page - 1) * rows + 1;
+        for (CheckResultTotal item : list) {
+            item.setIndex(startIndex);
+            item.setCreator("admin");
+            item.setNum(random.nextInt(50) + 50);
+            startIndex++;
+        }
         return new PageInfo<>(list);
     }
 
     @Override
-    public PageInfo selectByStatus(Integer page, Integer rows, List<Integer> list) {
+    public PageInfo<CheckResultTotal> selectByStatus(Integer page, Integer rows, List<Integer> list) {
         PageHelper.startPage(page, rows);
         List<CheckResultTotal> rets = checkResultTotalDao.selectByStatus2(list);
+        Random random = new Random();
+        int startIndex = (page - 1) * rows + 1;
+        for (CheckResultTotal item : rets) {
+            item.setIndex(startIndex);
+            item.setCreator("admin");
+            item.setNum(random.nextInt(50) + 50);
+            startIndex++;
+        }
         return new PageInfo<>(rets);
     }
 }

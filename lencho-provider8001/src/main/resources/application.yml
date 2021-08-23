@@ -15,7 +15,7 @@ spring:
 #    username: root
 #    password: 123456
 
-    url: jdbc:postgresql://hadoop102:5432/db2021?useUnicode=true&characterEncoding=utf8
+    url: jdbc:postgresql://hadoop104:5432/db2021?useUnicode=true&characterEncoding=utf8
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: root
