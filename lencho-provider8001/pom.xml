@@ -19,6 +19,18 @@
             <version>${project.version}</version>
         </dependency>-->
 
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-jdk8</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+
+
         <!--导入pagehelper相关依赖-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>

@@ -29,4 +29,6 @@ public class ZipFileInfo {
     @JsonFormat(pattern= Constant.DATE_FORMAT, timezone = Constant.TIME_ZONE)
     private Date endTime;
 
+    private Integer progress;
+    private Integer status;
 }

@@ -13,9 +13,11 @@ import java.util.List;
 public interface ZipFileInfoService {
     public Integer selectCount();
 
-    public PageInfo select(int page, int rows);
+    public PageInfo listByStatus(int page, int rows, String taskName, List<Integer> status);
 
     public List<ZipFileInfo> selectForPage(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
 
     public ZipFileInfo selectByName(@Param("fileName") String fileName);
+
+    public boolean deleteById(Integer id);
 }

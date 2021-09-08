@@ -12,11 +12,13 @@
         <result column="f_json" property="json" jdbcType="VARCHAR"/>
         <result column="f_starttime" jdbcType="TIMESTAMP" property="startTime"/>
         <result column="f_endtime" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="f_progress" jdbcType="INTEGER" property="progress"/>
+        <result column="f_status" jdbcType="INTEGER" property="status"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         f_oid
-        , f_filename, f_filepath, f_ishandle, f_note,f_json, f_starttime, f_endtime
+        , f_filename, f_filepath, f_ishandle, f_note,f_json, f_starttime, f_endtime,f_progress,f_status
     </sql>
 
     <!-- 查询1 -->
@@ -28,10 +30,20 @@
         limit #{pageSize} offset #{startIndex}
     </select>
 
-    <select id="select" resultMap="BaseResultMap">
+    <select id="listByStatus" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from tb_zipfileinfo
+        where 1=1
+        <if test="status != null and status.size() > 0">
+            and f_status in (
+            <foreach collection="status" item="item" separator=",">
+                #{item,jdbcType=NUMERIC}
+            </foreach>)
+        </if>
+        <if test="taskName != null and taskName != ''">
+            and f_filename like '%${taskName}%'
+        </if>
         order by f_starttime desc
     </select>
 
@@ -50,4 +62,9 @@
         select count(*)
         from tb_zipfileinfo
     </select>
+
+    <!-- 通过id 删除 -->
+    <delete id="deleteById">
+        delete from tb_zipfileinfo where f_oid = #{id}
+    </delete>
 </mapper>

@@ -1,6 +1,8 @@
 package com.geoway.webstore.service.impl;
 
+import com.geoway.webstore.converter.ZipFileInfoConverter;
 import com.geoway.webstore.dao.ZipFileInfoDao;
+import com.geoway.webstore.dto.ZipFileInfoDto;
 import com.geoway.webstore.entities.ZipFileInfo;
 import com.geoway.webstore.service.ZipFileInfoService;
 import com.github.pagehelper.PageHelper;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.stream.IntStream;
 
 /**
  * @author Lencho
@@ -26,10 +29,21 @@ public class ZipFileInfoServiceImpl implements ZipFileInfoService {
     }
 
     @Override
-    public PageInfo select(int page, int rows) {
+    public PageInfo listByStatus(int page, int rows, String taskName, List<Integer> status) {
         PageHelper.startPage(page, rows);
-        List<ZipFileInfo> list = zipFileInfoDao.select();
-        return new PageInfo<>(list);
+        List<ZipFileInfo> list = zipFileInfoDao.listByStatus(taskName, status);
+        PageInfo pageInfo = new PageInfo<>(list);
+        List<ZipFileInfo> zipFileInfoList = pageInfo.getList();
+        List<ZipFileInfoDto> dtoList = ZipFileInfoConverter.Instance.domain2dto(zipFileInfoList);
+        IntStream.range(0, dtoList.size()).forEach(i -> {
+                    ZipFileInfoDto dto = dtoList.get(i);
+                    dto.setIndex((page - 1) * rows + 1 + i);
+                    /*dto.setProgress((int) (50 + Math.random() * 50));
+                    dto.setStatus((int) (Math.random() * 5) - 1);*/
+                }
+        );
+        pageInfo.setList(dtoList);
+        return pageInfo;
     }
 
     @Override
@@ -40,5 +54,10 @@ public class ZipFileInfoServiceImpl implements ZipFileInfoService {
     @Override
     public ZipFileInfo selectByName(String fileName) {
         return zipFileInfoDao.selectByName(fileName);
+    }
+
+    @Override
+    public boolean deleteById(Integer id) {
+        return zipFileInfoDao.deleteById(id);
     }
 }

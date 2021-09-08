@@ -24,8 +24,8 @@ import java.util.concurrent.TimeUnit;
  * @desc
  */
 @Slf4j
-@RestController
-@RequestMapping("/see")
+/*@RestController
+@RequestMapping("/see")*/
 public class SseController2 {
 
     private final SseEmitters emitters = new SseEmitters();
