@@ -48,8 +48,8 @@ public class TbsysParaController {
         return tbsysParaService.findOne(tbsysParaConfig.getScanPathKey()).getValue();
     }
 
-    @PutMapping("/scanPath/{scanPath}")
-    public boolean updateScanPath(@PathVariable("scanPath") String scanPath) {
+    @PutMapping("/scanPath")
+    public boolean updateScanPath(@RequestParam("scanPath") String scanPath) {
         return tbsysParaService.update(tbsysParaConfig.getScanPathKey(), scanPath);
     }
 
