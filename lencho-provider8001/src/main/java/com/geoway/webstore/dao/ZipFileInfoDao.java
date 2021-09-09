@@ -1,5 +1,6 @@
 package com.geoway.webstore.dao;
 
+import com.geoway.webstore.dto.ZipFileInfoDto;
 import com.geoway.webstore.entities.ZipFileInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -22,4 +23,6 @@ public interface ZipFileInfoDao {
     public ZipFileInfo selectByName(@Param("fileName") String fileName);
 
     public boolean deleteById(@Param("id") Integer id);
+
+    boolean updateStatus(ZipFileInfoDto dto);
 }

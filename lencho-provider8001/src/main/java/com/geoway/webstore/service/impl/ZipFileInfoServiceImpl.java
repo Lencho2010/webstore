@@ -60,4 +60,9 @@ public class ZipFileInfoServiceImpl implements ZipFileInfoService {
     public boolean deleteById(Integer id) {
         return zipFileInfoDao.deleteById(id);
     }
+
+    @Override
+    public boolean updateStatus(ZipFileInfoDto dto) {
+        return zipFileInfoDao.updateStatus(dto);
+    }
 }

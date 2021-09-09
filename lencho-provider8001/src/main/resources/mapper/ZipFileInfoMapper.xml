@@ -65,6 +65,14 @@
 
     <!-- 通过id 删除 -->
     <delete id="deleteById">
-        delete from tb_zipfileinfo where f_oid = #{id}
+        delete
+        from tb_zipfileinfo
+        where f_oid = #{id}
     </delete>
+
+    <update id="updateStatus">
+        update tb_zipfileinfo
+        set f_status = #{status}
+        where f_oid = #{id}
+    </update>
 </mapper>

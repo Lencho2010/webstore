@@ -1,5 +1,6 @@
 package com.geoway.webstore.service;
 
+import com.geoway.webstore.dto.ZipFileInfoDto;
 import com.geoway.webstore.entities.ZipFileInfo;
 import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.annotations.Param;
@@ -20,4 +21,6 @@ public interface ZipFileInfoService {
     public ZipFileInfo selectByName(@Param("fileName") String fileName);
 
     public boolean deleteById(Integer id);
+
+    boolean updateStatus(ZipFileInfoDto dto);
 }

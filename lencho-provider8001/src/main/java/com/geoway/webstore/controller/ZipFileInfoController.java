@@ -1,6 +1,7 @@
 package com.geoway.webstore.controller;
 
 import com.geoway.webstore.anno.ResponseResult;
+import com.geoway.webstore.dto.ZipFileInfoDto;
 import com.geoway.webstore.entities.ZipFileInfo;
 import com.geoway.webstore.service.ZipFileInfoService;
 import com.github.pagehelper.PageInfo;
@@ -47,5 +48,10 @@ public class ZipFileInfoController {
                                   @RequestParam(value = "taskName", required = false) String taskName,
                                   @RequestParam(value = "status", required = false) List<Integer> status) {
         return zipFileInfoService.listByStatus(page, rows, taskName, status);
+    }
+
+    @PutMapping("/updateStatus")
+    public boolean updateStatus(@RequestBody ZipFileInfoDto zipFileInfo){
+        return zipFileInfoService.updateStatus(zipFileInfo);
     }
 }
