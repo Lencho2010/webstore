@@ -32,8 +32,13 @@ public class ZipFileInfoController {
         return zipFileInfoService.selectForPage(startIndex, pageSize);
     }
 
-    @GetMapping("/select/{fileName}")
+    /*@GetMapping("/select/{fileName}")
     public ZipFileInfo selectByName(@PathVariable("fileName") String fileName) {
+        return zipFileInfoService.selectByName(fileName);
+    }*/
+
+    @GetMapping("/select/{fileName}")
+    public ZipFileInfoDto selectByName(@PathVariable("fileName") String fileName) {
         return zipFileInfoService.selectByName(fileName);
     }
 

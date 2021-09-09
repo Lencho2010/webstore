@@ -18,4 +18,6 @@ public interface SubFileInfoDao {
     public List<SubFileInfo> selectForPage(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
 
     public List<SubFileInfo> selectByTaskId(@Param("taskId") int taskId);
+
+    List<SubFileInfo> listByTaskName(@Param("taskName") String taskName);
 }

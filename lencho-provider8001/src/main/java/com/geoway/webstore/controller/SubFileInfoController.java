@@ -1,6 +1,7 @@
 package com.geoway.webstore.controller;
 
 import com.geoway.webstore.anno.ResponseResult;
+import com.geoway.webstore.dto.SubFileInfoDto;
 import com.geoway.webstore.entities.SubFileInfo;
 import com.geoway.webstore.service.SubFileInfoService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,5 +37,10 @@ public class SubFileInfoController {
     @GetMapping("/select/{taskId}")
     public List<SubFileInfo> selectByTaskId(@PathVariable("taskId") int taskId) {
         return subFileInfoService.selectByTaskId(taskId);
+    }
+
+    @GetMapping("/list/{taskName}")
+    public List<SubFileInfoDto> listByTaskName(@PathVariable("taskName") String taskName){
+        return subFileInfoService.listByTaskName(taskName);
     }
 }

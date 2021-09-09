@@ -30,6 +30,13 @@
         from tb_subfileinfo
         limit #{pageSize} offset #{startIndex}
     </select>
+
+    <select id="listByTaskName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_subfileinfo where f_code = #{taskName}
+        order by f_oid asc
+    </select>
     <!-- 查询1 -->
     <select id="selectByTaskId" resultMap="BaseResultMap">
         select

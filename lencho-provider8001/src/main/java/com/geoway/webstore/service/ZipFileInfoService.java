@@ -18,7 +18,7 @@ public interface ZipFileInfoService {
 
     public List<ZipFileInfo> selectForPage(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
 
-    public ZipFileInfo selectByName(@Param("fileName") String fileName);
+    public ZipFileInfoDto selectByName(@Param("fileName") String fileName);
 
     public boolean deleteById(Integer id);
 

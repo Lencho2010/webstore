@@ -52,8 +52,9 @@ public class ZipFileInfoServiceImpl implements ZipFileInfoService {
     }
 
     @Override
-    public ZipFileInfo selectByName(String fileName) {
-        return zipFileInfoDao.selectByName(fileName);
+    public ZipFileInfoDto selectByName(String fileName) {
+        ZipFileInfo zipFileInfo = zipFileInfoDao.selectByName(fileName);
+        return ZipFileInfoConverter.Instance.domain2dto(zipFileInfo);
     }
 
     @Override
