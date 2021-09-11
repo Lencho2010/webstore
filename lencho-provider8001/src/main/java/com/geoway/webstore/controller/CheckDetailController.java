@@ -1,6 +1,7 @@
 package com.geoway.webstore.controller;
 
 import com.geoway.webstore.anno.ResponseResult;
+import com.geoway.webstore.dto.CheckDetailDto;
 import com.geoway.webstore.entities.CheckDetail;
 import com.geoway.webstore.service.CheckDetailService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,5 +37,10 @@ public class CheckDetailController {
     @GetMapping("select/{code}")
     public List<CheckDetail> selectByCode(@PathVariable("code") String code) {
         return checkDetailService.selectByCode(code);
+    }
+
+    @GetMapping("listByCode/{code}")
+    public List<CheckDetailDto> listByCode(@PathVariable("code") String taskName) {
+        return checkDetailService.listByCode(taskName);
     }
 }

@@ -1,6 +1,7 @@
 package com.geoway.webstore.controller;
 
 import com.geoway.webstore.anno.ResponseResult;
+import com.geoway.webstore.dto.CheckResultTotalDto;
 import com.geoway.webstore.entities.CheckResultTotal;
 import com.geoway.webstore.service.CheckResultTotalService;
 import com.github.pagehelper.PageInfo;
@@ -48,5 +49,10 @@ public class CheckResultTotalController {
         PageInfo<CheckResultTotal> pageInfo = checkResultTotalService.selectByStatus(page, rows, list);
         List<CheckResultTotal> infoList = pageInfo.getList();
         return pageInfo;
+    }
+
+    @GetMapping("/listByCode/{taskName}")
+    public List<CheckResultTotalDto> listByCode(@PathVariable("taskName") String taskName) {
+        return checkResultTotalService.listByCode(taskName);
     }
 }

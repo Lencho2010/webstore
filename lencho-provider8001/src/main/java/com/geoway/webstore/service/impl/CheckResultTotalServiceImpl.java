@@ -1,6 +1,8 @@
 package com.geoway.webstore.service.impl;
 
+import com.geoway.webstore.converter.CheckResultTotalConverter;
 import com.geoway.webstore.dao.CheckResultTotalDao;
+import com.geoway.webstore.dto.CheckResultTotalDto;
 import com.geoway.webstore.entities.CheckResultTotal;
 import com.geoway.webstore.service.CheckResultTotalService;
 import com.github.pagehelper.PageHelper;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 /**
  * @author Lencho
@@ -32,9 +35,9 @@ public class CheckResultTotalServiceImpl implements CheckResultTotalService {
         List<CheckResultTotal> list = checkResultTotalDao.selectForPage(startIndex, pageSize);
         Random random = new Random();
         for (CheckResultTotal item : list) {
-            item.setIndex(startIndex);
-            item.setCreator("admin");
-            item.setNum(random.nextInt(50) + 50);
+            //item.setIndex(startIndex);
+            /*item.setCreator("admin");
+            item.setNum(random.nextInt(50) + 50);*/
             startIndex++;
         }
         return list;
@@ -47,9 +50,9 @@ public class CheckResultTotalServiceImpl implements CheckResultTotalService {
         Random random = new Random();
         int startIndex = (page - 1) * rows + 1;
         for (CheckResultTotal item : list) {
-            item.setIndex(startIndex);
-            item.setCreator("admin");
-            item.setNum(random.nextInt(50) + 50);
+            //item.setIndex(startIndex);
+            /*item.setCreator("admin");
+            item.setNum(random.nextInt(50) + 50);*/
             startIndex++;
         }
         return new PageInfo<>(list);
@@ -62,11 +65,19 @@ public class CheckResultTotalServiceImpl implements CheckResultTotalService {
         Random random = new Random();
         int startIndex = (page - 1) * rows + 1;
         for (CheckResultTotal item : rets) {
-            item.setIndex(startIndex);
-            item.setCreator("admin");
-            item.setNum(random.nextInt(50) + 50);
+            //item.setIndex(startIndex);
+            /*item.setCreator("admin");
+            item.setNum(random.nextInt(50) + 50);*/
             startIndex++;
         }
         return new PageInfo<>(rets);
+    }
+
+    @Override
+    public List<CheckResultTotalDto> listByCode(String taskName) {
+        List<CheckResultTotal> checkResultTotals = checkResultTotalDao.listByCode(taskName);
+        List<CheckResultTotalDto> dtoList = CheckResultTotalConverter.Instance.domain2dto(checkResultTotals);
+        IntStream.range(0, dtoList.size()).forEach(index -> dtoList.get(index).setIndex(index + 1));
+        return dtoList;
     }
 }

@@ -1,6 +1,7 @@
 package com.geoway.webstore.controller;
 
 import com.geoway.webstore.anno.ResponseResult;
+import com.geoway.webstore.dto.CheckResultDto;
 import com.geoway.webstore.entities.CheckResult;
 import com.geoway.webstore.service.CheckResultService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,5 +37,10 @@ public class CheckResultController {
     @GetMapping("/select/{code}")
     public List<CheckResult> selectByCode(@PathVariable("code") String code) {
         return checkResultService.selectByCode(code);
+    }
+
+    @GetMapping("/listByCode/{code}")
+    public List<CheckResultDto> listByCode(@PathVariable("code") String code) {
+        return checkResultService.listByCode(code);
     }
 }

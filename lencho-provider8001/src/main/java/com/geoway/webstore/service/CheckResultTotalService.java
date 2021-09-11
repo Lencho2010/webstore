@@ -1,5 +1,6 @@
 package com.geoway.webstore.service;
 
+import com.geoway.webstore.dto.CheckResultTotalDto;
 import com.geoway.webstore.entities.CheckResultTotal;
 import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.annotations.Param;
@@ -18,4 +19,6 @@ public interface CheckResultTotalService {
     PageInfo<CheckResultTotal> selectByStatus(Integer page, Integer rows, Integer status);
 
     PageInfo<CheckResultTotal> selectByStatus(Integer page, Integer rows, List<Integer> list);
+
+    List<CheckResultTotalDto> listByCode(String taskName);
 }

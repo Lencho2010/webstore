@@ -1,4 +1,4 @@
-package com.geoway.webstore.entities;
+package com.geoway.webstore.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.geoway.webstore.constant.Constant;
@@ -8,15 +8,16 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 /**
- * @author Lencho
- * @create 2021-08-22 14:39
- * @desc 质检明细结果表，一个批次的一个县一个规则一条记录
+ * @Author: Lencho
+ * @CreateTime: 2021/9/11 10:03
+ * @Description:
  */
 @Data
 @NoArgsConstructor
-public class CheckResult {
+public class CheckResultDto {
 
-    private String code;
+    private Integer index;
+    private String batch;
 
     private String countyCode;
     private String countyName;
@@ -33,14 +34,14 @@ public class CheckResult {
     //1-通过；0-不通过
     private Integer checkResult;
 
-    //质检结果
-    private String checkMsg;
+    //质检结果-checkMsg
+    private String checkInfo;
 
     @JsonFormat(pattern = Constant.DATE_FORMAT, timezone = Constant.TIME_ZONE)
     private Date startTime;
 
     @JsonFormat(pattern = Constant.DATE_FORMAT, timezone = Constant.TIME_ZONE)
     private Date endTime;
-    //结果信息
-    private String checkInfo;
+    //结果信息- checkInfo
+    private String finalResult;
 }

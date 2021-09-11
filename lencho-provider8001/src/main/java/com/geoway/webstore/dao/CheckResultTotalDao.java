@@ -21,4 +21,6 @@ public interface CheckResultTotalDao {
     public List<CheckResultTotal> selectByStatus(@Param("status") Integer status);
 
     public List<CheckResultTotal> selectByStatus2(@Param("list") List<Integer> list);
+
+    List<CheckResultTotal> listByCode(@Param("taskName") String taskName);
 }

@@ -5,13 +5,21 @@
 
     <resultMap id="BaseResultMap" type="com.geoway.webstore.entities.CheckResultTotal">
         <result column="f_code" property="taskName" jdbcType="VARCHAR"/>
+
+        <result column="f_sjxzqmc" property="provinceName" jdbcType="VARCHAR"/>
+        <result column="f_sjxzqdm" property="provinceCode" jdbcType="VARCHAR"/>
+        <result column="f_dsjxzqmc" property="cityName" jdbcType="VARCHAR"/>
+        <result column="f_dsjxzqdm" property="cityCode" jdbcType="VARCHAR"/>
+        <result column="f_xzqdm" property="countyCode" jdbcType="VARCHAR"/>
+        <result column="f_xzqmc" property="countyName" jdbcType="VARCHAR"/>
+        <result column="f_checkmsg" property="checkMsg" jdbcType="VARCHAR"/>
         <result column="f_starttime" jdbcType="TIMESTAMP" property="startTime"/>
         <result column="f_endtime" jdbcType="TIMESTAMP" property="endTime"/>
         <result column="f_status" property="status" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        f_code
+        f_code,f_sjxzqmc, f_sjxzqdm, f_dsjxzqmc, f_dsjxzqdm, f_xzqdm, f_xzqmc,f_checkmsg
         , f_starttime, f_endtime, f_status
     </sql>
     <select id="selectByStatus" resultMap="BaseResultMap" parameterType="java.lang.Integer">
@@ -22,6 +30,14 @@
         <if test="status != null">
             and f_status = #{status}
         </if>
+        order by f_starttime desc
+    </select>
+
+    <select id="listByCode" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_jctb2021_checkresult_total
+        where f_code = #{taskName}
         order by f_starttime desc
     </select>
 

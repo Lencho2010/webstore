@@ -16,10 +16,18 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 public class CheckResultTotal {
-    //序号
-    private Integer index;
+
     private String taskName;
     private Integer status;
+
+    private String countyCode;
+    private String countyName;
+
+    private String cityCode;
+    private String cityName;
+
+    private String provinceCode;
+    private String provinceName;
 
     @JsonFormat(pattern= Constant.DATE_FORMAT, timezone = Constant.TIME_ZONE)
     private Date startTime;
@@ -28,7 +36,6 @@ public class CheckResultTotal {
     private Date endTime;
 
     //创建人信息
-    private String creator;
-    //进度
-    private Integer num;
+    private String checkMsg;
+
 }
