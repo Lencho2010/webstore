@@ -1,6 +1,7 @@
 package com.geoway.webstore.controller;
 
 import com.geoway.webstore.anno.ResponseResult;
+import com.geoway.webstore.dto.FitResultDto;
 import com.geoway.webstore.entities.FitResult;
 import com.geoway.webstore.service.FitResultService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,5 +37,10 @@ public class FitResultController {
     @GetMapping("select/{code}")
     public List<FitResult> selectByCode(@PathVariable("code") String code) {
         return fitResultService.selectByCode(code);
+    }
+
+    @GetMapping("listByCode/{code}")
+    public List<FitResultDto> listByCode(@PathVariable("code") String code) {
+        return fitResultService.listByCode(code);
     }
 }
