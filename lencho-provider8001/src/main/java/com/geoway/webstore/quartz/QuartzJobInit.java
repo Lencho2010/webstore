@@ -15,7 +15,7 @@ import java.util.Set;
  * @CreateTime: 2021/9/12 12:40
  * @Description:
  */
-//@Component
+@Component
 public class QuartzJobInit implements ApplicationRunner {
     private static final String ID = "Fit";
     @Resource
@@ -24,6 +24,7 @@ public class QuartzJobInit implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         JobDetail jobDetail = JobBuilder.newJob(MyQuartzJob.class)
+                .withIdentity(ID + " 02")
                 .storeDurably()
                 .build();
         SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
@@ -31,10 +32,14 @@ public class QuartzJobInit implements ApplicationRunner {
                 .repeatForever(); //永久重复，一直执行下去
         Trigger trigger = TriggerBuilder.newTrigger()
                 .forJob(jobDetail)
+                .withIdentity(ID + " 02Trigger")
                 .withSchedule(scheduleBuilder)
                 .startNow()
                 .build();
-        scheduler.scheduleJob(jobDetail,trigger);
+        Set<Trigger> set = new HashSet<>();
+        set.add(trigger);
+        // boolean replace 表示启动时对数据库中的quartz的任务进行覆盖。
+        scheduler.scheduleJob(jobDetail, set, true);
 
         /*JobDetail jobDetail = JobBuilder.newJob(MyQuartzJob.class)
                 .withIdentity(ID + " 02")
