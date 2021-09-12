@@ -6,6 +6,8 @@ import com.geoway.webstore.entities.ZipFileInfo;
 import com.geoway.webstore.service.ZipFileInfoService;
 import com.geoway.webstore.service.impl.ZipFileInfoServiceImpl;
 import com.github.pagehelper.PageInfo;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +22,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/zipFileInfo")
 @ResponseResult
+@Log4j2
 public class ZipFileInfoController {
 
-    private static final Logger log = LoggerFactory.getLogger(ZipFileInfoController.class);
+    //private static final Logger log = LoggerFactory.getLogger(ZipFileInfoController.class);
 
 
     @Resource
