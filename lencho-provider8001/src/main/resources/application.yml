@@ -56,6 +56,21 @@ pagehelper:
   supportMethodsArguments: true
   params: count=countSql
 
+###swagger如下都是非必须的配置（实际使用时请根据实际情况配置）
+swagger:
+  enabled: true
+  title: 套合比对系统 - Powered by GEOWAY
+  description: 套合比对系统接口文档
+  termsOfServiceUrl: http://www.geoway.com.cn/
+  contact:
+    name: 北京吉威空间软件股份有限公司
+    url: contact
+    email:
+  #接口包扫描路径
+  base-package: com.geoway.webstore.controller
+  #需排除的接口路径
+  exclude-path:
+
 master:
   datasource:
     druid:

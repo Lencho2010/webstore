@@ -6,6 +6,8 @@ import com.geoway.webstore.entities.ZipFileInfo;
 import com.geoway.webstore.service.ZipFileInfoService;
 import com.geoway.webstore.service.impl.ZipFileInfoServiceImpl;
 import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -23,6 +25,7 @@ import java.util.List;
 @RequestMapping("/zipFileInfo")
 @ResponseResult
 @Log4j2
+@Api(tags = "套合比对任务接口")
 public class ZipFileInfoController {
 
     //private static final Logger log = LoggerFactory.getLogger(ZipFileInfoController.class);
@@ -56,6 +59,7 @@ public class ZipFileInfoController {
         return zipFileInfoService.deleteById(id);
     }
 
+    @ApiOperation(value = "分页查询任务列表", notes = "分页查询任务列表")
     @GetMapping(value = {"/listByStatus/{page}/{rows}"})
     public PageInfo listByStatus(@PathVariable("page") int page,
                                  @PathVariable("rows") int rows,
