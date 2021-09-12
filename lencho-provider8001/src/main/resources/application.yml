@@ -71,6 +71,10 @@ swagger:
   #需排除的接口路径
   exclude-path:
 
+logging:
+  level: {root: debug}
+  config: classpath:log4j2.xml
+
 master:
   datasource:
     druid:
