@@ -10,6 +10,7 @@
   <modules>
     <module>lencho-provider8001</module>
     <module>lencho-api-commons</module>
+      <module>lencho-rocketmq</module>
   </modules>
   <packaging>pom</packaging>
 
