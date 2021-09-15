@@ -1,8 +1,10 @@
 package com.geoway.webstore;
 
+import com.geoway.webstore.util.IDWorker;
 import com.spring4all.swagger.EnableSwagger2Doc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 /**
  * @author Lencho
@@ -13,5 +15,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LenchoProvider8001 {
     public static void main(String[] args) {
         SpringApplication.run(LenchoProvider8001.class, args);
+    }
+
+    @Bean
+    public IDWorker getBean(){
+        return new IDWorker(1,1);
     }
 }
