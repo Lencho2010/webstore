@@ -15,7 +15,7 @@ spring:
 #    username: root
 #    password: 123456
 
-    url: jdbc:postgresql://hadoop104:5432/db2021?useUnicode=true&characterEncoding=utf8
+    url: jdbc:postgresql://hadoop104:5432/db01?useUnicode=true&characterEncoding=utf8
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: root
@@ -41,35 +41,35 @@ spring:
       #归还连接时是否检测有效性
       test-on-return: false
 
-  quartz:
-    #持久化到数据库方式
-    job-store-type: jdbc
-    scheduler-name: myScheduler # 相同 Scheduler 名字的节点，形成一个 Quartz 集群
-    wait-for-jobs-to-complete-on-shutdown: true # 应用关闭时，是否等待定时任务执行完成。默认为 false ，建议设置为 true
-    jdbc:
-      initialize-schema: never # 第一次初始化设置always 后面设置never
-    properties:
-      org:
-        quartz:
-          scheduler:
-            instanceName: MyScheduler
-            instanceId: AUTO
-          jobStore:
-            dataSource: quartzDataSource # 使用的数据源
-            class: org.quartz.impl.jdbcjobstore.JobStoreTX
-            driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
-            tablePrefix: QRTZ_ # Quartz 表前缀
-            isClustered: false # 是集群模式
-            clusterCheckinInterval: 10000
-            #  jobdataMap的数据转化成blob字段时容易出错,
-            #  在quartz的文档中有推荐说jobdatamap都用string,可以避免此类错误
-            #  要做到限制全是string必须在quartz.properties中把org.quartz.jobStore.useProperties设成true
-            useProperties: true
-          threadPool:
-            class: org.quartz.simpl.SimpleThreadPool
-            threadCount: 10
-            threadPriority: 5
-            threadsInheritContextClassLoaderOfInitializingThread: true
+#  quartz:
+#    #持久化到数据库方式
+#    job-store-type: jdbc
+#    scheduler-name: myScheduler # 相同 Scheduler 名字的节点，形成一个 Quartz 集群
+#    wait-for-jobs-to-complete-on-shutdown: true # 应用关闭时，是否等待定时任务执行完成。默认为 false ，建议设置为 true
+#    jdbc:
+#      initialize-schema: never # 第一次初始化设置always 后面设置never
+#    properties:
+#      org:
+#        quartz:
+#          scheduler:
+#            instanceName: MyScheduler
+#            instanceId: AUTO
+#          jobStore:
+#            dataSource: quartzDataSource # 使用的数据源
+#            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+#            driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+#            tablePrefix: QRTZ_ # Quartz 表前缀
+#            isClustered: false # 是集群模式
+#            clusterCheckinInterval: 10000
+#            #  jobdataMap的数据转化成blob字段时容易出错,
+#            #  在quartz的文档中有推荐说jobdatamap都用string,可以避免此类错误
+#            #  要做到限制全是string必须在quartz.properties中把org.quartz.jobStore.useProperties设成true
+#            useProperties: true
+#          threadPool:
+#            class: org.quartz.simpl.SimpleThreadPool
+#            threadCount: 10
+#            threadPriority: 5
+#            threadsInheritContextClassLoaderOfInitializingThread: true
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml

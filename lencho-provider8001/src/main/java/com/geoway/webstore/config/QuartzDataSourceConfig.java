@@ -16,7 +16,7 @@ import javax.sql.DataSource;
  * @CreateTime: 2021/9/12 15:15
  * @Description:
  */
-@Configuration
+//@Configuration
 public class QuartzDataSourceConfig {
     private static HikariDataSource createHikariDataSource(DataSourceProperties properties) {
         // 创建 HikariDataSource 对象
