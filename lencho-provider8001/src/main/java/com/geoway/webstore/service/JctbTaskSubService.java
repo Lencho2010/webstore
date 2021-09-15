@@ -1,5 +1,6 @@
 package com.geoway.webstore.service;
 
+import com.geoway.webstore.dto.JctbTaskSubDto;
 import com.geoway.webstore.entities.JctbTaskSub;
 
 import java.util.List;
@@ -24,6 +25,8 @@ public interface JctbTaskSubService {
     JctbTaskSub selectByPrimaryKey(Long id);
 
     List<JctbTaskSub> listByTaskName(String taskName);
+
+    List<JctbTaskSubDto> listByTaskName2(String taskName);
 
     int updateByPrimaryKeySelective(JctbTaskSub record);
 

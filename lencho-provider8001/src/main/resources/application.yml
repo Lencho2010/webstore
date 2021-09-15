@@ -75,7 +75,7 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.geoway.webstore.entities
   configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     cache-enabled: false
     localCacheScope: STATEMENT
 

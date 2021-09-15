@@ -1,12 +1,22 @@
 package com.geoway.webstore.service.impl;
 
+import com.geoway.webstore.converter.JctbTaskDetailConverter;
+import com.geoway.webstore.converter.JctbTaskSubConverter;
+import com.geoway.webstore.converter.ZipTaskInfoConverter;
+import com.geoway.webstore.dao.JctbTaskDetailMapper;
 import com.geoway.webstore.dao.JctbTaskSubMapper;
+import com.geoway.webstore.dto.JctbTaskDetailDto;
+import com.geoway.webstore.dto.JctbTaskSubDto;
+import com.geoway.webstore.dto.ZipTaskInfoDto;
+import com.geoway.webstore.entities.JctbTaskDetail;
 import com.geoway.webstore.entities.JctbTaskSub;
+import com.geoway.webstore.entities.ZipSubTaskInfo;
 import com.geoway.webstore.service.JctbTaskSubService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Author: Lencho
@@ -17,6 +27,9 @@ import java.util.List;
 public class JctbTaskSubServiceImpl implements JctbTaskSubService {
     @Resource
     JctbTaskSubMapper jctbTaskSubMapper;
+
+    @Resource
+    JctbTaskDetailMapper jctbTaskDetailMapper;
 
     @Override
     public int deleteByPrimaryKey(Long id) {
@@ -51,6 +64,21 @@ public class JctbTaskSubServiceImpl implements JctbTaskSubService {
     @Override
     public List<JctbTaskSub> listByTaskName(String taskName) {
         return jctbTaskSubMapper.listByTaskName(taskName);
+    }
+
+    @Override
+    public List<JctbTaskSubDto> listByTaskName2(String taskName) {
+        List<JctbTaskSub> jctbTaskSubs = jctbTaskSubMapper.listByTaskName(taskName);
+
+        List<JctbTaskDetail> jctbTaskDetails = jctbTaskDetailMapper.listByTaskName(taskName);
+        //List<JctbTaskDetailDto> taskDetailDtoList = JctbTaskDetailConverter.Instance.domain2dto(jctbTaskDetails);
+        List<JctbTaskSubDto> dtoList = JctbTaskSubConverter.Instance.domain2dto(jctbTaskSubs);
+        dtoList.forEach(dto -> {
+            List<JctbTaskDetail> collect = jctbTaskDetails.stream().filter(d -> d.getParentId().equals(dto.getId())).collect(Collectors.toList());
+            dto.setChildren(JctbTaskDetailConverter.Instance.domain2dto(collect));
+        });
+
+        return dtoList;
     }
 
     @Override

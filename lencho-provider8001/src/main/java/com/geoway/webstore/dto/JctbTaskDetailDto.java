@@ -9,15 +9,21 @@ import java.util.Date;
 
 /**
  * @Author: Lencho
- * @CreateTime: 2021/9/15 16:27
+ * @CreateTime: 2021/9/15 21:29
  * @Description:
  */
 @Data
 @NoArgsConstructor
-public class JctbTaskDto {
-    private Integer index;
+public class JctbTaskDetailDto {
+    private Long id;
+
+    private Long parentId;
+
     private String taskName;
-    private String creator = "admin";
+
+    private Short status;
+
+    private String log;
 
     @JsonFormat(pattern = Constant.DATE_FORMAT, timezone = Constant.TIME_ZONE)
     private Date startTime;
@@ -25,10 +31,9 @@ public class JctbTaskDto {
     @JsonFormat(pattern = Constant.DATE_FORMAT, timezone = Constant.TIME_ZONE)
     private Date endTime;
 
-    //检测图斑数量
-    private Integer tbCount;
-    private Integer progress;
-    private Integer status;
+    private Integer stepCode;
+
+    private String stepInfo;
 
     private String consumeTime;
 }

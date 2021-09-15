@@ -1,16 +1,23 @@
-package com.geoway.webstore.entities;
+package com.geoway.webstore.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.geoway.webstore.constant.Constant;
+import com.geoway.webstore.entities.JctbTaskDetail;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
 
-@NoArgsConstructor
+/**
+ * @Author: Lencho
+ * @CreateTime: 2021/9/15 20:37
+ * @Description:
+ */
 @Data
-public class JctbTaskSub {
+@NoArgsConstructor
+public class JctbTaskSubDto {
+
     private Long id;
 
     private String taskName;
@@ -28,4 +35,8 @@ public class JctbTaskSub {
     private Integer stepCode;
 
     private String stepName;
+
+    private String consumeTime;
+
+    private List<JctbTaskDetailDto> children;
 }
