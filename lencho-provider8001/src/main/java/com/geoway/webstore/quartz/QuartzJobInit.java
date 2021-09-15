@@ -15,7 +15,7 @@ import java.util.Set;
  * @CreateTime: 2021/9/12 12:40
  * @Description:
  */
-@Component
+//@Component
 public class QuartzJobInit implements ApplicationRunner {
     private static final String ID = "Fit";
     @Resource
