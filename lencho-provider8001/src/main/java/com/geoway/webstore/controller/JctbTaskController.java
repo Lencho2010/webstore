@@ -67,7 +67,7 @@ public class JctbTaskController {
         return jctbTaskService.updateProgressAndStatusByTaskName(record);
     }
 
-    @PutMapping("/update")
+    @PutMapping
     public int updateByPrimaryKey(@RequestBody JctbTask record) {
         return jctbTaskService.updateByPrimaryKey(record);
     }
