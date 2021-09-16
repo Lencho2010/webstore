@@ -11,7 +11,7 @@
         </commentGenerator>
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="org.postgresql.Driver"
-                        connectionURL="jdbc:postgresql://hadoop104:5432/db2021"
+                        connectionURL="jdbc:postgresql://hadoop104:5432/db01"
                         userId="postgres"
                         password="root">
         </jdbcConnection>
@@ -65,7 +65,7 @@
         <table schema="hjk" tableName="hzz_att_lk_base_spa_range"   enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true"></table>-->
-        <table tableName="jctb_task_detail" domainObjectName="JctbTaskDetail"
+        <table tableName="jctb_unzip_detail" domainObjectName="JctbUnzipDetail"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
