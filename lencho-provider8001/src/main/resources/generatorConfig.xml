@@ -65,7 +65,7 @@
         <table schema="hjk" tableName="hzz_att_lk_base_spa_range"   enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true"></table>-->
-        <table tableName="jctb_unzip_detail" domainObjectName="JctbUnzipDetail"
+        <table tableName="jctb_quality_check_overview" domainObjectName="JctbQualityCheckOverview"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
