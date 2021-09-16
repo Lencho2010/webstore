@@ -12,14 +12,17 @@
         <result property="cityName" column="city_name" jdbcType="VARCHAR"/>
         <result property="countyCode" column="county_code" jdbcType="VARCHAR"/>
         <result property="countyName" column="county_name" jdbcType="VARCHAR"/>
+        <result property="originCount" column="origin_count" jdbcType="INTEGER"/>
+        <result property="resultCount" column="result_count" jdbcType="INTEGER"/>
         <result property="status" column="status" jdbcType="INTEGER"/>
         <result property="fail" column="fail" jdbcType="VARCHAR"/>
         <result property="info" column="info" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,task_name, province_code, province_name, city_code, city_name,
-        county_code, county_name, status, fail, info
+        id
+        ,task_name, province_code, province_name, city_code, city_name,
+        county_code, county_name, origin_count, result_count, status, fail, info
     </sql>
 
     <!--查询单个-->
@@ -32,6 +35,8 @@
                city_name,
                county_code,
                county_name,
+               origin_count,
+               result_count,
                status,
                fail,
                info
@@ -49,6 +54,8 @@
                city_name,
                county_code,
                county_name,
+               origin_count,
+               result_count,
                status,
                fail,
                info
@@ -58,7 +65,8 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="BaseResultMap">
         select
-        id, task_name, province_code, province_name, city_code, city_name, county_code, county_name, status, fail, info
+        id, task_name, province_code, province_name, city_code, city_name, county_code, county_name, origin_count,
+        result_count,status, fail, info
         from public.jctb_contrast_detail
         <where>
             <if test="id != null">
@@ -100,9 +108,10 @@
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into public.jctb_contrast_detail(task_name, province_code, province_name, city_code, city_name,
-                                                county_code, county_name, status, fail, info)
+                                                county_code, county_name, origin_count, result_count, status, fail,
+                                                info)
         values (#{taskName}, #{provinceCode}, #{provinceName}, #{cityCode}, #{cityName}, #{countyCode}, #{countyName},
-                #{status}, #{fail}, #{info})
+                #{originCount}, #{resultCount}, #{status}, #{fail}, #{info})
     </insert>
 
     <!--通过主键修改数据-->
@@ -130,6 +139,12 @@
             <if test="countyName != null and countyName != ''">
                 county_name = #{countyName},
             </if>
+            <if test="originCount != null">
+                origin_count = #{originCount},
+            </if>
+            <if test="resultCount != null">
+                result_count = #{resultCount},
+            </if>
             <if test="status != null">
                 status = #{status},
             </if>
@@ -152,11 +167,12 @@
 
     <insert id="batchInsert" parameterType="com.geoway.webstore.entities.JctbQualityCheckFail">
         insert into jctb_contrast_detail (id,task_name, province_code, province_name, city_code, city_name,
-        county_code, county_name, status, fail, info)
+        county_code, county_name, origin_count, result_count, status, fail, info)
         values
         <foreach collection="records" item="record" separator=",">
-            (#{record.id},#{record.taskName}, #{record.provinceCode}, #{record.provinceName}, #{record.cityCode}, #{record.cityName}, #{record.countyCode}, #{record.countyName},
-            #{record.status}, #{record.fail}, #{record.info})
+            (#{record.id},#{record.taskName}, #{record.provinceCode}, #{record.provinceName}, #{record.cityCode},
+            #{record.cityName}, #{record.countyCode}, #{record.countyName},
+            #{record.originCount},#{record.resultCount},#{record.status}, #{record.fail}, #{record.info})
         </foreach>
     </insert>
 

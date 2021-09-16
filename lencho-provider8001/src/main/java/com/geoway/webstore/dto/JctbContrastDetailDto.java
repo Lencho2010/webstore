@@ -30,6 +30,10 @@ public class JctbContrastDetailDto {
 
     private String countyName;
 
+    private Integer originCount;
+
+    private Integer resultCount;
+
     private Integer status;
 
     private String fail;
