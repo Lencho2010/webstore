@@ -5,6 +5,7 @@ import com.geoway.webstore.dto.JctbContrastDetailDto;
 import com.geoway.webstore.entities.JctbContrastDetail;
 import com.geoway.webstore.dao.JctbContrastDetailDao;
 import com.geoway.webstore.service.JctbContrastDetailService;
+import com.geoway.webstore.util.IDWorker;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,6 +20,10 @@ import java.util.stream.IntStream;
  */
 @Service("jctbContrastDetailService")
 public class JctbContrastDetailServiceImpl implements JctbContrastDetailService {
+
+    @Resource
+    private IDWorker idWorker;
+
     @Resource
     private JctbContrastDetailDao jctbContrastDetailDao;
 
@@ -53,6 +58,7 @@ public class JctbContrastDetailServiceImpl implements JctbContrastDetailService 
      */
     @Override
     public JctbContrastDetail insert(JctbContrastDetail jctbContrastDetail) {
+        jctbContrastDetail.setId(idWorker.nextId());
         this.jctbContrastDetailDao.insert(jctbContrastDetail);
         return jctbContrastDetail;
     }
@@ -82,6 +88,7 @@ public class JctbContrastDetailServiceImpl implements JctbContrastDetailService 
 
     @Override
     public int batchInsert(List<JctbContrastDetail> records) {
+        records.forEach(r -> r.setId(idWorker.nextId()));
         return jctbContrastDetailDao.batchInsert(records);
     }
 

@@ -7,6 +7,7 @@ import com.geoway.webstore.dto.JctbTaskDto;
 import com.geoway.webstore.dto.ZipFileInfoDto;
 import com.geoway.webstore.entities.JctbTask;
 import com.geoway.webstore.service.JctbTaskService;
+import com.geoway.webstore.util.IDWorker;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;

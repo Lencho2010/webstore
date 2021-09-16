@@ -3,6 +3,7 @@ package com.geoway.webstore.service.impl;
 import com.geoway.webstore.dao.JctbTaskDetailMapper;
 import com.geoway.webstore.entities.JctbTaskDetail;
 import com.geoway.webstore.service.JctbTaskDetailService;
+import com.geoway.webstore.util.IDWorker;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,6 +20,9 @@ public class JctbTaskDetailServiceImpl implements JctbTaskDetailService {
     @Resource
     JctbTaskDetailMapper jctbTaskDetailMapper;
 
+    @Resource
+    private IDWorker idWorker;
+
     @Override
     public int deleteByPrimaryKey(Long id) {
         return jctbTaskDetailMapper.deleteByPrimaryKey(id);
@@ -26,16 +30,19 @@ public class JctbTaskDetailServiceImpl implements JctbTaskDetailService {
 
     @Override
     public int insert(JctbTaskDetail record) {
+        record.setId(idWorker.nextId());
         return jctbTaskDetailMapper.insert(record);
     }
 
     @Override
     public int batchInsert(List<JctbTaskDetail> records) {
+        records.forEach(r -> r.setId(idWorker.nextId()));
         return jctbTaskDetailMapper.batchInsert(records);
     }
 
     @Override
     public int insertSelective(JctbTaskDetail record) {
+        record.setId(idWorker.nextId());
         return jctbTaskDetailMapper.insertSelective(record);
     }
 

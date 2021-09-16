@@ -5,6 +5,7 @@ import com.geoway.webstore.dao.JctbQualityCheckDetailMapper;
 import com.geoway.webstore.dto.JctbQualityCheckDetailDto;
 import com.geoway.webstore.entities.JctbQualityCheckDetail;
 import com.geoway.webstore.service.JctbQualityCheckDetailService;
+import com.geoway.webstore.util.IDWorker;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,6 +22,9 @@ public class JctbQualityCheckDetailServiceImpl implements JctbQualityCheckDetail
     @Resource
     JctbQualityCheckDetailMapper jctbQualityCheckDetailMapper;
 
+    @Resource
+    private IDWorker idWorker;
+
     @Override
     public int deleteByPrimaryKey(Long id) {
         return jctbQualityCheckDetailMapper.deleteByPrimaryKey(id);
@@ -28,11 +32,13 @@ public class JctbQualityCheckDetailServiceImpl implements JctbQualityCheckDetail
 
     @Override
     public int insert(JctbQualityCheckDetail record) {
+        record.setId(idWorker.nextId());
         return jctbQualityCheckDetailMapper.insert(record);
     }
 
     @Override
     public int insertSelective(JctbQualityCheckDetail record) {
+        record.setId(idWorker.nextId());
         return jctbQualityCheckDetailMapper.insertSelective(record);
     }
 
@@ -53,6 +59,7 @@ public class JctbQualityCheckDetailServiceImpl implements JctbQualityCheckDetail
 
     @Override
     public int batchInsert(List<JctbQualityCheckDetail> records) {
+        records.forEach(r->r.setId(idWorker.nextId()));
         return jctbQualityCheckDetailMapper.batchInsert(records);
     }
 

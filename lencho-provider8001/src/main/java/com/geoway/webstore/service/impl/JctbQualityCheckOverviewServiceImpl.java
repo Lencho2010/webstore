@@ -8,6 +8,7 @@ import com.geoway.webstore.dto.JctbUnzipDetailDto;
 import com.geoway.webstore.entities.JctbQualityCheckOverview;
 import com.geoway.webstore.entities.JctbUnzipDetail;
 import com.geoway.webstore.service.JctbQualityCheckOverviewService;
+import com.geoway.webstore.util.IDWorker;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -25,6 +26,9 @@ public class JctbQualityCheckOverviewServiceImpl implements JctbQualityCheckOver
     @Resource
     JctbQualityCheckOverviewMapper jctbQualityCheckOverviewMapper;
 
+    @Resource
+    private IDWorker idWorker;
+
     @Override
     public int deleteByPrimaryKey(Long id) {
         return jctbQualityCheckOverviewMapper.deleteByPrimaryKey(id);
@@ -32,11 +36,13 @@ public class JctbQualityCheckOverviewServiceImpl implements JctbQualityCheckOver
 
     @Override
     public int insert(JctbQualityCheckOverview record) {
+        record.setId(idWorker.nextId());
         return jctbQualityCheckOverviewMapper.insert(record);
     }
 
     @Override
     public int insertSelective(JctbQualityCheckOverview record) {
+        record.setId(idWorker.nextId());
         return jctbQualityCheckOverviewMapper.insertSelective(record);
     }
 
@@ -57,6 +63,7 @@ public class JctbQualityCheckOverviewServiceImpl implements JctbQualityCheckOver
 
     @Override
     public int batchInsert(List<JctbQualityCheckOverview> records) {
+        records.forEach(r -> r.setId(idWorker.nextId()));
         return jctbQualityCheckOverviewMapper.batchInsert(records);
     }
 
